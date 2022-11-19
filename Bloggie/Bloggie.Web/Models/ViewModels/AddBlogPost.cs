@@ -1,8 +1,7 @@
-﻿namespace Bloggie.Web.Models.Domain
+﻿namespace Bloggie.Web.Models.ViewModels
 {
-    public class BlogPost
+    public class AddBlogPost
     {
-        public Guid Id { get; set; }
         public string Heading { get; set; }
         public string PageTitle { get; set; }
         public string Content { get; set; }
@@ -12,6 +11,5 @@
         public DateTime PublishedDate { get; set; }
         public string Author { get; set; }
         public bool Visible { get; set; }
-
     }
 }
