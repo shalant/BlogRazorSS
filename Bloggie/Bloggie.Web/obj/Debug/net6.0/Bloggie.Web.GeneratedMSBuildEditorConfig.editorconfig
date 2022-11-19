@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\digdr\Documents\coding\BlogRazorSS\Bloggie\Bloggie.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/digdr/Documents/coding/BlogRazorSS/Bloggie/Bloggie.Web/Pages/Admin/Blogs/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQmxvZ3NcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/digdr/Documents/coding/BlogRazorSS/Bloggie/Bloggie.Web/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
