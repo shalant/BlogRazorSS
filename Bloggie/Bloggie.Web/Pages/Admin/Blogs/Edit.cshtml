@@ -10,20 +10,9 @@
     </div>
 </div>
 
-@{
-    var messageDescription = (string)ViewData["MessageDescription"];
-}
+<partial name="_Notification">
 
-@if(!string.IsNullOrWhiteSpace(messageDescription))
-{
-    <div class="container mb-5">
-        <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
-            @Html.Raw(messageDescription)
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-    
-}
+</partial>
 
 @if(Model.BlogPost != null)
 {
@@ -85,4 +74,10 @@ else
     <div class="container">
         <p>Blog Post Not Found</p>
     </div>
+}
+
+@section Scripts {
+    <script>
+        var editor = new FroalaEditor('#content');
+    </script>
 }
