@@ -27,7 +27,10 @@ namespace Bloggie.Web.Pages.Admin.Blogs
         public async Task<IActionResult> OnPostEdit()
         {
             await blogPostRepository.UpdateAsync(BlogPost);
-            return RedirectToPage("/Admin/Blogs/List");
+
+            ViewData["MessageDescription"] = "Record was successfully saved!";
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostDelete()
