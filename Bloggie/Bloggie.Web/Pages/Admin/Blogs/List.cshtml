@@ -3,14 +3,14 @@
 @{
 }
 
-@if(Model.BlogPosts != null)
-{
-    <div class="bg-secondary bg-opacity-10 py-2 mb-">
-        <div class="container">
-            <h1>Blog Posts</h1>
-        </div>
+<div class="bg-secondary bg-opacity-10 py-2 mb-">
+    <div class="container">
+        <h1>Blog Posts</h1>
     </div>
+</div>
 
+@if(Model.BlogPosts != null && Model.BlogPosts.Any())
+{
     <div class="container">
         <table class="table">
             <thead>
