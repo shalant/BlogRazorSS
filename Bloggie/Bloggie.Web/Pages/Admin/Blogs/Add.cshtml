@@ -33,7 +33,7 @@
 
             <div class="mb-3">
                 <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
-                <input type="file" name="name" id="featuredImageUpload" asp-for="FeaturedImage" />
+                <input type="file" id="featuredImageUpload" asp-for="FeaturedImage" />
                 <img src="" id="featuredImageDisplay" style="display:none; width:300px;"/>
             </div>
 
@@ -74,7 +74,9 @@
 
 @section Scripts {
     <script>
-        var editor = new FroalaEditor('#content');
+        var editor = new FroalaEditor('#content', {
+            imageUploadUrl: '/api/images'
+        });
 
 
         const featuredImageUploadElement = document.getElementById('featuredImageUpload');
