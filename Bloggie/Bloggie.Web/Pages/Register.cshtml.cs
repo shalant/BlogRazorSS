@@ -27,7 +27,6 @@ namespace Bloggie.Web.Pages
             {
                 UserName = RegisterViewModel.Username,
                 Email = RegisterViewModel.Email,
-
             };
 
             var identityResult = await userManager.CreateAsync(user, RegisterViewModel.Password);
