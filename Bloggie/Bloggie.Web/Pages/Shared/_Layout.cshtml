@@ -13,6 +13,7 @@
     <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm b navbar-dark bg-dark order-bottom box-shadow">
@@ -27,20 +28,25 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
+
+                        @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-                                aria-expanded="false" id="navbarDropdownAdmin">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false" id="navbarDropdownAdmin">
                                 Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                 <li>
-                                    <a href="/admin/blogs/add" class="dropdown-item" >Add Blog Post</a>
+                                    <a href="/admin/blogs/add" class="dropdown-item">Add Blog Post</a>
                                 </li>
                                 <li>
                                     <a href="/admin/blogs/list" class="dropdown-item">Blog Posts</a>
                                 </li>
                             </ul>
                         </li>
+                        }
+
                     </ul>
                     <div class="d-flex align-item-center">
                         @if(signInManager.IsSignedIn(User))
