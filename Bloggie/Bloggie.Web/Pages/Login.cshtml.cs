@@ -23,7 +23,23 @@ namespace Bloggie.Web.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            signInManager.PasswordSignInAsync()
+            var signInResult = await signInManager.PasswordSignInAsync(
+                LoginViewModel.Username, LoginViewModel.Password, false, false);
+
+            if (signInResult.Succeeded)
+            {
+                return RedirectToPage("index");
+            }
+            else
+            {
+                ViewData["Notification"] = new Notification
+                {
+                    Type = Enums.NotificationType.Error,
+                    Message = "Unable to login"
+                };
+
+                return Page();
+            }
         }
     }
 }
