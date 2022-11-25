@@ -1,5 +1,9 @@
-﻿@page "/blog/{urlHandle}"
+﻿page "/blog/{urlHandle}"
 @model Bloggie.Web.Pages.Blog.DetailsModel
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
 @{
     ViewData["Title"] = Model.BlogPost.PageTitle;
 }
@@ -7,7 +11,7 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
-            @if(Model.BlogPost != null)
+            @if (Model.BlogPost != null)
             {
                 <h1 class="mb-3">@Model.BlogPost.Heading</h1>
 
@@ -17,7 +21,14 @@
                 </div>
 
                 <div class="mb-3">
-                    @if(Model.BlogPost.Tags != null)
+                    <a id="btnLike" style="cursor:pointer">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </a>
+                    <span> @Model.TotalLikes likes</span>
+                </div>
+
+                <div class="mb-3">
+                    @if (Model.BlogPost.Tags != null)
                     {
                         foreach (var tag in Model.BlogPost.Tags)
                         {
@@ -42,3 +53,24 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        const btnLike = document.getElementById("btnLike");
+
+        async function addLikeForBlog() {
+
+            fetch('/api/blogpostlike/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': '*/*'
+                },
+                body: JSON.stringify({ blogPostId: '@Model.BlogPost.Id', userId: '@userManager.GetUserId(User)' })
+            })
+                .then(console.log('request finished'))
+        }
+
+        btnLike.addEventListener('click', addLikeForBlog);
+    </script>
+}
