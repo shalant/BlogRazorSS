@@ -1,0 +1,19 @@
+bob
+bob@bob.com
+Bobbob1!
+
+
+                Id = superAdminId,
+                UserName = "superadmin@bloggie.com",
+                Email = "superadmin@bloggie.com",
+                NormalizedEmail = "superadmin@bloggie.com".ToUpper(),
+                NormalizedUserName = "superadmin@bloggie.com".ToUpper()
+
+
+user1@bloggie.com
+User1@123
+User@123
+
+
+superadmin@bloggie.com
+superadmin123
