@@ -45,24 +45,29 @@ namespace Bloggie.Web.Pages.Admin.Users
 
         public async Task<IActionResult> OnPost()
         {
-            var identityUser = new IdentityUser
+            if (ModelState.IsValid)
             {
-                UserName = AddUserRequest.Username,
-                Email = AddUserRequest.Email
-            };
+                var identityUser = new IdentityUser
+                {
+                    UserName = AddUserRequest.Username,
+                    Email = AddUserRequest.Email
+                };
 
-            var roles = new List<string> { "User " };
+                var roles = new List<string> { "User " };
 
-            if (AddUserRequest.AdminCheckbox)
-            {
-                roles.Add("Admin");
-            }
+                if (AddUserRequest.AdminCheckbox)
+                {
+                    roles.Add("Admin");
+                }
 
-            var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
+                var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
 
-            if (result)
-            {
-                return RedirectToPage("/Admin/Users/Index");
+                if (result)
+                {
+                    return RedirectToPage("/Admin/Users/Index");
+                }
+
+                return Page();
             }
 
             return Page();
