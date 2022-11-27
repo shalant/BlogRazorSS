@@ -17,3 +17,6 @@ User@123
 
 superadmin@bloggie.com
 superadmin123
+
+user2@bloggie.com
+User2@123
