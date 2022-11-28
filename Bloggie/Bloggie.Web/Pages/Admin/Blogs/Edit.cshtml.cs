@@ -5,6 +5,7 @@ using Bloggie.Web.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace Bloggie.Web.Pages.Admin.Blogs
@@ -21,6 +22,7 @@ namespace Bloggie.Web.Pages.Admin.Blogs
         public IFormFile FeaturedImage { get; set; }
 
         [BindProperty]
+        [Required]
         public string Tags { get; set; }
 
         public EditModel(IBlogPostRepository blogPostRepository)
@@ -55,6 +57,8 @@ namespace Bloggie.Web.Pages.Admin.Blogs
 
         public async Task<IActionResult> OnPostEdit()
         {
+            ValidateEditBlogPost();
+
             if (ModelState.IsValid)
             {
                 try
@@ -114,6 +118,20 @@ namespace Bloggie.Web.Pages.Admin.Blogs
             }
 
             return Page();
+        }
+
+        private void ValidateEditBlogPost()
+        {
+            if (!string.IsNullOrWhiteSpace(BlogPost.Heading))
+            {
+                // check for minimum length
+                if(BlogPost.Heading.Length < 10 || BlogPost.Heading.Length > 72)
+                {
+                    ModelState.AddModelError("BlogPost.Heading",
+                        "Heading can only be between 10 and 72 characters");
+                }
+                // check for maximum length
+            }
         }
     }
 }
