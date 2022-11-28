@@ -27,19 +27,7 @@ namespace Bloggie.Web.Pages.Admin.Users
 
         public async Task<IActionResult> OnGet()
         {
-            var users = await userRepository.GetAll();
-
-            Users = new List<User>();
-            foreach(var user in users)
-            {
-                Users.Add(new Models.ViewModels.User()
-                {
-                    Id = Guid.Parse(user.Id),
-                    Username = user.UserName,
-                    Email = user.Email
-                });
-            }
-
+            await GetUsers();
             return Page();
         }
 
@@ -70,6 +58,7 @@ namespace Bloggie.Web.Pages.Admin.Users
                 return Page();
             }
 
+            await GetUsers();
             return Page();
         }
 
@@ -78,6 +67,22 @@ namespace Bloggie.Web.Pages.Admin.Users
             await userRepository.Delete(SelectedUserId);
             return RedirectToPage("/Admin/Users/Index");
 
+        }
+
+        private async Task GetUsers()
+        {
+            var users = await userRepository.GetAll();
+
+            Users = new List<User>();
+            foreach (var user in users)
+            {
+                Users.Add(new Models.ViewModels.User()
+                {
+                    Id = Guid.Parse(user.Id),
+                    Username = user.UserName,
+                    Email = user.Email
+                });
+            }
         }
     }
 }

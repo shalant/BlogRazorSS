@@ -20,3 +20,10 @@ superadmin123
 
 user2@bloggie.com
 User2@123
+
+admin1@bloggie.com
+Admin1@123
+
+boss
+boss@boss.com
+Bossboss1!
